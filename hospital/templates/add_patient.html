@@ -1,0 +1,46 @@
+{% extends 'navigation.html' %}
+ {% load static %}
+{% block body %}
+<style>
+    .container{
+        text-align: center;
+    }
+</style>
+<div class="container">
+    <h2 class="text-centre">Add Patient</h2>
+    <form method="post">
+        {% csrf_token %}
+        <label>
+            Patient name
+        </label>
+        <input type="text" class="form-control" name="name" required>
+          <label>
+        Mobile
+        </label>
+        <input type="text" class="form-control" name="mobile" required>
+        <br>
+        <label >Gender</label>
+        <input type="radio" name="gender" value="Male" required>Male
+        <input type="radio" name="gender" value="Female" required>Female
+        <br><br>
+        <label >Address</label>
+        <textarea type="text" class="form-control" name="address" required></textarea>
+        <br>
+        <input type="submit" value="submit" class="form-control btn btn-primary">
+    </form>
+</div>
+{% ifequal error "no" %}
+<script>
+    alert('Record saved sucessfully');
+    window.location = ('{% url 'view_patient' %}');
+</script>
+{% endifequal  %}
+{% ifequal error "yes" %}
+<script>
+    alert('somethng went wrng');
+
+</script>
+{% endifequal  %}
+
+
+{% endblock %}

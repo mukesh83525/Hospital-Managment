@@ -1,0 +1,39 @@
+{% extends 'navigation.html' %}
+ {% load static %}
+{% block body %}
+<style>
+    .text-centre{
+        text-align: center;
+    }
+</style>
+
+<div class="container" style="margin-top:50px">
+    <h2 class="text-centre"> View Appointment</h2>
+<br><br>
+<table id="example"  class="table table-hover">
+    <thead>
+        <tr>
+            <th>Doctor Name</th>
+            <th>Patient Name</th>
+            <th>Date</th>
+            <th>Time</th>
+           
+
+            
+        </tr>
+    </thead>
+    <tbody>
+        {% for i in appoint %}
+        <tr>
+            <td>{{i.doctor}}</td>
+            <td>{{i.patient}}</td>
+            <td>{{i.date1}}</td>
+            <td>{{i.time1}}</td>
+            
+            <td><a href="{% url 'Delete_appointment' i.id %}" onclick="return confirm('Are u sure?')" class="btn btn-danger">Delete</a></td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+</div>
+{% endblock %}
